@@ -4,7 +4,7 @@ import os
 
 if __name__ == "__main__":
     path = 'hidden_4.pyc'
-    if os.path.exists(file_path):
+    if os.path.exists(path):
         print("my_secret_santa")
         print("print_hidden")
         print("print_school")
