@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
-from variable_load_5 import a
+import os
 
 if __name__ == "__main__":
-    print(a)
+    path = 'hidden_4.pyc'
+    if os.path.exists(file_path):
+        print("my_secret_santa")
+        print("print_hidden")
+        print("print_school")
