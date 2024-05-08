@@ -4,7 +4,7 @@
 if __name__ == "__main__":
     try:
         import hidden_4
-    except:
+    except Exception as e:
         print("my_secret_santa")
         print("print_hidden")
         print("print_school")
