@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-import os
+import hidden_4
 
-if __name__ == "__main__":
-    path = 'hidden_4.pyc'
-    if os.path.exists(path):
-        print("my_secret_santa")
-        print("print_hidden")
-        print("print_school")
+list_of_names = dir(hidden_4)
+
+for name in list_of_names:
+    if not name.startswith("__"):
+        print(name)
