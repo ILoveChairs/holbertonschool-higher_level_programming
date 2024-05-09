@@ -15,12 +15,11 @@ if __name__ == "__main__":
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
     print(f"{a} {operator} {b} = ", end="")
-    match operator:
-        case "+":
-            print(add(a, b))
-        case "-":
-            print(sub(a, b))
-        case "*":
-            print(mul(a, b))
-        case "/":
-            print(div(a, b))
+    if operator == "+":
+        print(add(a, b))
+    elif operator == "-":
+        print(sub(a, b))
+    elif operator == "*":
+        print(mul(a, b))
+    elif operator == "/":
+        print(div(a, b))
