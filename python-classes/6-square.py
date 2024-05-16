@@ -62,8 +62,9 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        if self.size <= 0:
+        if self.size == 0:
             print("")
+            return
         for space in range(self.position[1]):
             print("")
         for y in range(self.size):
