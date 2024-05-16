@@ -26,6 +26,10 @@ class Square:
             tuple_error()
         elif len(position) != 2:
             tuple_error()
+        elif not isinstance(position[0], int):
+            tuple_error()
+        elif not isinstance(position[1], int):
+            tuple_error()
         elif position[0] < 0 or position[1] < 0:
             tuple_error()
         self.__position = position
@@ -53,6 +57,10 @@ class Square:
         if not isinstance(value, tuple):
             tuple_error()
         elif len(value) != 2:
+            tuple_error()
+        elif not isinstance(value[0], int):
+            tuple_error()
+        elif not isinstance(value[1], int):
             tuple_error()
         elif value[0] < 0 or value[1] < 0:
             tuple_error()
