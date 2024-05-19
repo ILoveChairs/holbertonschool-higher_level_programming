@@ -7,6 +7,11 @@
 
 
 class Node:
+    '''
+    __data(int): Content of node
+
+    __next_node(Node): Pointer to next node
+    '''
     def __init__(self, data, next_node=None):
         if not isinstance(data, int):
             raise TypeError("data must be an integer")
