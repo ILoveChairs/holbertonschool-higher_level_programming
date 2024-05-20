@@ -1,0 +1,24 @@
+>>> add_integer = __import__('0-add_integer').add_integer
+
+>>> print(add_integer(-100, 100))
+0
+>>> print(add_integer(0, 0))
+0
+>>> print(add_integer(5.3, 20))
+25
+>>> print(add_integer(-1, 25.8))
+24
+>>> print(add_integer(3.1415, 2.7182))
+5
+>>> print(add_integer("1", 89))
+Traceback (most recent call last):
+        ...
+TypeError: a must be an integer
+>>> print(add_integer(34, "Mundo!"))
+Traceback (most recent call last):
+        ...
+TypeError: b must be an integer
+>>> print(add_integer([2], 77))
+Traceback (most recent call last):
+        ...
+TypeError: a must be an integer
