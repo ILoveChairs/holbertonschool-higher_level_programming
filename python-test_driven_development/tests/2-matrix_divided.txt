@@ -5,7 +5,9 @@
 >>> matrix_divided([], 5)
 []
 >>> matrix_divided([[], []], 5)
-[[], []]
+Traceback (most recent call last):
+        ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
 >>> matrix_divided([[2, 3], [6, 2]], 0)
 Traceback (most recent call last):
         ...
