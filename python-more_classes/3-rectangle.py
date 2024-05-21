@@ -55,7 +55,7 @@ class Rectangle:
     def __str__(self):
         output = ""
         if self.width == 0 or self.height == 0:
-            return "\n"
+            return ""
         for x in range(self.height):
             line = ""
             for y in range(self.width):
