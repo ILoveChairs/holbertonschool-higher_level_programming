@@ -6,6 +6,9 @@
 
 
 def matrix_divided(matrix, div):
+    '''
+        Function that divides all numbers of a matrix by a number.
+    '''
     def type_error_thrower():
         raise TypeError(f"matrix must be a matrix (list of lists) \
 of integers/floats")
