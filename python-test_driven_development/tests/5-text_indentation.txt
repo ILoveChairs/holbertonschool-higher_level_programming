@@ -1,10 +1,10 @@
 >>> func = __import__('5-text_indentation').text_indentation
 
 
->>> func("Hola. Mundo!")
-Hola.
-<BLANKLINE>
-Mundo!
+>>> func()
+Traceback (most recent call last):
+        ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
 >>> func("")
 
 >>> func("a.b?c:d")
