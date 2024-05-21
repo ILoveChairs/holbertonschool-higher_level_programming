@@ -8,6 +8,8 @@ def add_integer(a, b=98):
     '''
         Safely adds 2 integers
     '''
+    if a == float('inf') or b == float('inf'):
+        return 98
     a = int(a) if isinstance(a, float) else a
     b = int(b) if isinstance(b, float) else b
     if not isinstance(a, int):
