@@ -1,0 +1,12 @@
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+>>> matrix_divided([[0, 1, 2, 3, 4], [0, 10, 20, 30, 40], [0, 100, 200, 300, 400], [0, 1000, 2000, 3000, 4000]], 5)
+[[0, 0.2, 0.4, 0.6, 0.8], [0, 2, 4, 6, 8], [0, 20, 40, 60, 80], [0, 200, 400, 600, 800]]
+>>> matrix_divided([], 5)
+[]
+>>> matrix_divided([[], []], 5)
+[[], []]
+>>> matrix_divided([2, 3], [6, 2], 0)
+Traceback (most recent call last):
+        ...
+ZeroDivisionError: division by zero
