@@ -4,7 +4,7 @@
 [[0.0, 0.2, 0.4, 0.6, 0.8], [0.0, 2.0, 4.0, 6.0, 8.0], [0.0, 20.0, 40.0, 60.0, 80.0], [0.0, 200.0, 400.0, 600.0, 800.0]]
 >>> matrix_divided([], 5)
 []
->>> matrix_divided([[], []], 5)
+>>> matrix_divided(1, 5)
 Traceback (most recent call last):
         ...
 TypeError: matrix must be a matrix (list of lists) of integers/floats
