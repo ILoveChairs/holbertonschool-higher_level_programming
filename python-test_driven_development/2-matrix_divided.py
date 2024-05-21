@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 '''
     Defined a function that divides all numbers of a matrix by a number.
