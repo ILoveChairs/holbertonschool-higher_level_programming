@@ -1,0 +1,21 @@
+>>> func = __import__('5-text_indentation').text_indentation
+
+
+>>> func("Hola. Mundo!")
+Hola.
+<BLANKLINE>
+Mundo!
+>>> func("")
+
+>>> func("a.b?c:d")
+a.
+<BLANKLINE>
+b?
+<BLANKLINE>
+c:
+<BLANKLINE>
+d
+>>> func(100)
+Traceback (most recent call last):
+        ...
+TypeError: text must be a string
