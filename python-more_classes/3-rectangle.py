@@ -54,9 +54,11 @@ class Rectangle:
 
     def __str__(self):
         output = ""
+        if self.width == 0 or self.height == 0:
+            return "\n"
         for x in range(self.height):
             line = ""
             for y in range(self.width):
                 line += "#"
-            output +=  f"{line}\n"
+            output += f"{line}\n"
         return output[:-1]
