@@ -1,0 +1,14 @@
+>>> func = __import__('3-say_my_name').say_my_name
+
+>>> func("Matias", "Davezac")
+My name is Matias Davezac
+>>> func("", "")
+My name is  
+>>> func(2024, "Prrum")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+>>> func("Javier", 58008)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
