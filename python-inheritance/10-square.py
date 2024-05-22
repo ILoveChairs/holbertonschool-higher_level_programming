@@ -38,5 +38,9 @@ class Rectangle(BaseGeometry):
 
 
 class Square(Rectangle):
+    '''
+        Perfect rectangle
+    '''
+
     def __init__(self, size):
         super().__init__(size, size)
