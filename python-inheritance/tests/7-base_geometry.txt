@@ -4,7 +4,7 @@
 
 >>> geometry.area()
 Traceback (most recent call last):
-        ...
+    ...
 Exception: area() is not implemented
 
 >>> geometry.integer_validator("age")
@@ -15,39 +15,39 @@ TypeError: BaseGeometry.integer_validator() missing 1 required positional argume
 
 >>> geometry.integer_validator("age", 0)
 Traceback (most recent call last):
-        ...
+    ...
 ValueError: age must be greater than 0
 
 >>> geometry.integer_validator("age", -4)
 Traceback (most recent call last):
-        ...
+    ...
 ValueError: age must be greater than 0
 
 >>> geometry.integer_validator("age", 4)
 
 >>> geometry.integer_validator("age", "4")
 Traceback (most recent call last):
-        ...
+    ...
 TypeError: age must be an integer
 
 >>> geometry.integer_validator("age", (4,))
 Traceback (most recent call last):
-        ...
+    ...
 TypeError: age must be an integer
 
 >>> geometry.integer_validator("age", [3])
 Traceback (most recent call last):
-        ...
+    ...
 TypeError: age must be an integer
 
 >>> geometry.integer_validator("age", True)
 
 >>> geometry.integer_validator("age", {3, 4})
 Traceback (most recent call last):
-        ...
+    ...
 TypeError: age must be an integer
 
 >>> geometry.integer_validator("age", None)
 Traceback (most recent call last):
-        ...
+    ...
 TypeError: age must be an integer
