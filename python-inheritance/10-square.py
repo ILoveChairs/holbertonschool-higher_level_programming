@@ -3,20 +3,7 @@
 '''
     DGQQ
 '''
-
-
-class BaseGeometry:
-    '''
-        Duck Goes Quack Quack
-    '''
-    def area(self):
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        if value.__class__.__name__ != 'int':
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
