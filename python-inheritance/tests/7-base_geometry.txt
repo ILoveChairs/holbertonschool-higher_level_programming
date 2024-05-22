@@ -43,6 +43,11 @@ TypeError: age must be an integer
 
 >>> geometry.integer_validator("age", True)
 
+>>> geometry.integer_validator("age", False)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
 >>> geometry.integer_validator("age", {3, 4})
 Traceback (most recent call last):
     ...
