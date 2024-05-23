@@ -30,13 +30,13 @@ class Circle(Shape):
     '''
 
     def __init__(self, radius):
-        self.__radius = radius
+        self.__radius = abs(radius)
 
     def area(self):
-        return max(self.__radius ** 2 * pi, 0)
+        return self.__radius ** 2 * pi
 
     def perimeter(self):
-        return max(self.__radius * pi * 2, 0)
+        return self.__radius * pi * 2
 
 
 class Rectangle(Shape):
@@ -48,14 +48,14 @@ class Rectangle(Shape):
     '''
 
     def __init__(self, width, height):
-        self.__width = width
-        self.__height = height
+        self.__width = abs(width)
+        self.__height = abs(height)
 
     def area(self):
-        return max(self.__height * self.__width, 0)
+        return self.__height * self.__width
 
     def perimeter(self):
-        return max(self.__height * 2 + self.__width * 2, 0)
+        return self.__height * 2 + self.__width * 2
 
 
 def shape_info(shape: Shape):
