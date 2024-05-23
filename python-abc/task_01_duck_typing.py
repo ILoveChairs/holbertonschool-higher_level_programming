@@ -30,17 +30,13 @@ class Circle(Shape):
     '''
 
     def __init__(self, radius):
-        if not isinstance(radius, int):
-            raise TypeError("radius must be an int")
-        if radius < 0:
-            raise ValueError("radius must be >= 0")
         self.__radius = radius
 
     def area(self):
-        return self.__radius ** 2 * pi
+        return max(self.__radius ** 2 * pi, 0)
 
     def perimeter(self):
-        return self.__radius * pi * 2
+        return max(self.__radius * pi * 2, 0)
 
 
 class Rectangle(Shape):
