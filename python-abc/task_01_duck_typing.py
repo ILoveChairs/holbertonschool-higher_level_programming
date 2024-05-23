@@ -13,7 +13,6 @@ class Shape(ABC):
         Shape
     '''
 
-    
     @abstractmethod
     def area(self):
         pass
@@ -53,22 +52,14 @@ class Rectangle(Shape):
     '''
 
     def __init__(self, width, height):
-        if not isinstance(width, int):
-            raise TypeError("width must be an int")
-        if width < 0:
-            raise ValueError("width must be >= 0")
-        if not isinstance(height, int):
-            raise TypeError("height must be an int")
-        if height < 0:
-            raise ValueError("height must be >= 0")
         self.__width = width
         self.__height = height
 
     def area(self):
-        return self.__height * self.__width
+        return max(self.__height * self.__width, 0)
 
     def perimeter(self):
-        return self.__height * 2 + self.__width * 2
+        return max(self.__height * 2 + self.__width * 2, 0)
 
 
 def shape_info(shape: Shape):
