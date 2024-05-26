@@ -25,18 +25,14 @@ def matrix_mul(m_a, m_b):
         raise ValueError("m_b can't be empty")
 
     if not all([
-        [
-            (isinstance(num, int) or isinstance(num, float))
-            for num in row
-        ]
-            for row in m_a]):
+        all([(isinstance(num, int) or isinstance(num, float))
+            for num in lst])
+            for lst in m_a]):
         raise TypeError("m_a should contain only integers or floats")
     if not all([
-        [
-            (isinstance(num, int) or isinstance(num, float))
-            for num in row
-        ]
-            for row in m_b]):
+        all([(isinstance(num, int) or isinstance(num, float))
+            for num in lst])
+            for lst in m_b]):
         raise TypeError("m_b should contain only integers or floats")
 
     if min([len(row) for row in m_a]) != max([len(row) for row in m_a]):
@@ -55,13 +51,13 @@ def matrix_mul(m_a, m_b):
     def calc(x, y):
         output = 0
         for i in range(m_a_h):
-            output += m_a[y][i] * m_b[i][x]
+            output += m_a[x][i] * m_b[i][y]
         return output
 
     output = []
-    for y in range(m_a_w):
+    for x in range(m_a_w):
         new_list = []
-        for x in range(m_b_h):
+        for y in range(m_b_h):
             new_list.append(calc(x, y))
         output.append(new_list)
     return output
