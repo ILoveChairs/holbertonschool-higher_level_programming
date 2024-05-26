@@ -14,4 +14,4 @@ def add_attribute(cls, varname, value):
         raise TypeError("can't add new attribute")
     if "__setattr__" not in d or varname not in d:
         raise TypeError("can't add new attribute")
-    setattr(cls, varname, value)
+    cls.varname = value
