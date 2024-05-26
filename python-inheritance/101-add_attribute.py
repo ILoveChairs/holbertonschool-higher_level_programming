@@ -9,8 +9,9 @@ def add_attribute(cls, varname, value):
     '''
         Adds an attribute safely
     '''
-    if not isinstance(cls, object) or not isinstance(varname, str):
+    d = dir(cls)
+    if not isinstance(varname, str):
         raise TypeError("can't add new attribute")
-    if "__setattr__" not in dir(cls):
+    if "__setattr__" not in d or varname not in d:
         raise TypeError("can't add new attribute")
     setattr(cls, varname, value)
