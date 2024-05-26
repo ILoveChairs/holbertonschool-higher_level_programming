@@ -12,6 +12,6 @@ def add_attribute(cls, varname, value):
     d = dir(cls)
     if not isinstance(varname, str):
         raise TypeError("can't add new attribute")
-    if "__setattr__" not in d or varname not in d:
+    if "__setattr__" not in d:
         raise TypeError("can't add new attribute")
     cls.varname = value
