@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 '''
-    quick doc
+    Defines matrix_mul
 '''
 
 
 def matrix_mul(m_a, m_b):
     '''
-        quick doc
+        Multiplies to matrix together
     '''
     if not isinstance(m_a, list):
         raise TypeError("m_a must be a list")
@@ -44,26 +44,24 @@ def matrix_mul(m_a, m_b):
     if min([len(row) for row in m_b]) != max([len(row) for row in m_b]):
         raise TypeError("each row of m_b must be of the same size")
 
-    if False:
-        raise TypeError("m_a and m_b can't be multiplied")
+    m_a_w = len(m_a)
+    m_a_h = len(m_a[0])
+    m_b_w = len(m_b)
+    m_b_h = len(m_b[0])
 
-    m_a_height = len(m_a)
-    m_a_width = len(m_a[0])
-    m_b_height = len(m_b)
-    m_b_width = len(m_b[0])
+    if m_a_h != m_b_w:
+        raise TypeError("m_a and m_b can't be multiplied")
 
     def calc(x, y):
         output = 0
-        for i in range(m_a_width):
+        for i in range(m_a_h):
             output += m_a[y][i] * m_b[i][x]
         return output
 
     output = []
-    for y in range(m_a_height):
+    for y in range(m_a_w):
         new_list = []
-        for x in range(m_a_width):
-            if x >= m_b_width:
-                break
+        for x in range(m_b_h):
             new_list.append(calc(x, y))
         output.append(new_list)
     return output
