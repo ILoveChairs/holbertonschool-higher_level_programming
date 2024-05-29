@@ -4,12 +4,10 @@
     quick doc
 '''
 
-import json
-
 
 def class_to_json(obj):
     '''
         quick doc
     '''
 
-    return json.dumps(obj, default=lambda o: o.__dict__)
+    return { x for x in dir(obj) if x[:2] != "__"}
