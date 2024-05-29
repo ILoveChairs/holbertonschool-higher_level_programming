@@ -21,6 +21,7 @@ class Student():
             for key in dir(self)
             if key[:2] != "__"
             and key != "to_json"
+            and key != "reload_from_json"
             }
         if attrs is None:
             return sattrs
