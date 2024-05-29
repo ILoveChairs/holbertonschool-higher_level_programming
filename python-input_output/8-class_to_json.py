@@ -10,4 +10,4 @@ def class_to_json(obj):
         quick doc
     '''
 
-    return { x for x in dir(obj) if x[:2] != "__"}
+    return { key: obj.key for key in dir(obj) if key[:2] != "__"}
