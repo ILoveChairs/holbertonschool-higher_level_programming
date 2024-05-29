@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 '''
-	quick doc
+    quick doc
 '''
 
 
