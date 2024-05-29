@@ -10,4 +10,4 @@ def class_to_json(obj):
         quick doc
     '''
 
-    return { key: getattr(obj, key) for key in dir(obj) if key[:2] != "__"}
+    return {key: getattr(obj, key) for key in dir(obj) if key[:2] != "__"}
