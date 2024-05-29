@@ -15,5 +15,5 @@ def load_from_json_file(filename):
 
     io = None
     with open(filename) as f:
-        io = StringIO(json.load(f))
+        io = StringIO(f)
     return io
