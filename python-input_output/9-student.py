@@ -20,4 +20,5 @@ class Student():
             key: getattr(self, key)
             for key in dir(self)
             if key[:2] != "__"
+            and key != "to_json"
             }
