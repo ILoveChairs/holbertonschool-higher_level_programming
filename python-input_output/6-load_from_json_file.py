@@ -13,7 +13,7 @@ def load_from_json_file(filename):
         quick doc
     '''
 
-    io = None
+    output = None
     with open(filename) as f:
-        io = f
-    return json.load(io)
+        output = json.load(io)
+    return output
