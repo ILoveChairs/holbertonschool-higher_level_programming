@@ -13,13 +13,17 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-    superlist = []
-    for num in range(n):
-        lst = [1]
+    triangle = []
+    prev = []
+    for row_len in range(1, n + 1):
+        row = [1]
+        for idx in range(1, row_len):
+            if idx == row_len - 1:
+                row.append(1)
+            else:
+                num = prev[idx - 1] + prev[idx]
+                row.append(num)
+        prev = row
+        triangle.append(row)
 
-        for i in range(1, num + 1):
-            lst.append(i)
-
-        superlist.append(lst)
-
-    return superlist
+    return triangle
