@@ -30,7 +30,13 @@ def fetch_and_save_posts():
     if int(r.status_code / 100) == 2:
         dic = r.json()
         with open("posts.csv", "w+") as f:
-            dwriter = csv.DictWriter(f, ['title', 'body'])
+            dwriter = csv.DictWriter(f, ['id', 'title', 'body'])
             dwriter.writeheader()
             for sub_dic in dic:
-                dwriter.writerow({'title': sub_dic['title'], 'body': sub_dic['body']})
+                dwriter.writerow(
+                    {
+                        'id': sub_dic['id'],
+                        'title': sub_dic['title'],
+                        'body': sub_dic['body']
+                    }
+                )
