@@ -13,7 +13,7 @@ def adder_recursive(key, parent_dict, parent_element):
         for sub_key in parent_dict[key]:
             adder_recursive(sub_key, parent_dict[key], new)
     else:
-        new.text = parent_dict[key]
+        new.text = str(parent_dict[key])
 
 
 def serialize_to_xml(dictionary, filename):
