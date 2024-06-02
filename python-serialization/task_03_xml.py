@@ -35,7 +35,7 @@ def reader_recursive(element):
         for sub_element in element:
             content = reader_recursive(sub_element)
             if not len(content):
-                new_dict[sub_element.tag] = reader_recursive(sub_element).text
+                new_dict[sub_element.tag] = str(reader_recursive(sub_element).text)
             else:
                 new_dict[sub_element.tag] = reader_recursive(sub_element)
         return new_dict
