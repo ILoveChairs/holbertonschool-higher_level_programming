@@ -26,18 +26,18 @@ class WebRequestHandler(HS.BaseHTTPRequestHandler):
         '''
             quick doc
         '''
-        if self.path[-5:] == "/data":
+        if self.path == "/data":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps({"name": "John", "age": 30, "city": "New York"}).encode("utf-8"))
-        elif self.path[-7:] == "/status":
+        elif self.path == "/status":
             self.send_text()
             self.wfile.write("OK".encode("utf-8"))
-        elif self.path[-1:] == '/':
+        elif self.path == '/':
             self.send_text()
             self.wfile.write("Hello, this is a simple API!".encode("utf-8"))
-        elif self.path == "/info"
+        elif self.path == "/info":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
