@@ -12,7 +12,7 @@ import json
 
 app = Flask(__name__)
 
-users = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}}
+users = {}
 
 
 @app.route("/")
@@ -58,6 +58,8 @@ def user_getter(usr):
 def user_adder():
     if request.is_json:
         dic = request.get_json()
+        if "username" not in dic:
+            return "Not valud", 400
         users[dic["username"]] = dic
         return {"message": "User added", "user": dic}
     else:
