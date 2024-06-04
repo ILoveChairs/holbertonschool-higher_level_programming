@@ -14,43 +14,55 @@ app = Flask(__name__)
 
 users = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}}
 
+
 @app.route("/")
-def home():
+def home_getter():
     '''
         quickdoc
     '''
 
     return "Welcome to the Flask API!"
 
+
 @app.route("/data")
-def data():
+def data_getter():
     '''
         quickdoc
     '''
 
-    return jsonify(users)
+    return [x for x in users]
+
 
 @app.route("/status")
-def status():
+def status_getter():
     '''
         quickdoc
     '''
 
     return "OK"
 
-@app.route("/status/<usr>")
-def status(usr):
+
+@app.route("/users/<usr>")
+def user_getter(usr):
     '''
         quickdoc
     '''
 
     if usr in users:
-        return jsonify(users[usr])
+        return users[usr]
+    else:
+        return {"error": "User not found"}
 
-@app.post('/add__user')
-def login():
-    if request.method == 'POST':
-        json.dumps(request.form['username'])
+
+@app.post('/add_user')
+def user_adder():
+    if request.is_json:
+        dic = request.get_json()
+        users[dic["username"]] = dic
+        return {"message": "User added", "user": dic}
+    else:
+        return "Not valid", 400
+
 
 if __name__ == "__main__":
     app.run()
