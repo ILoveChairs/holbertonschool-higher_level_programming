@@ -39,6 +39,15 @@ def status_getter():
     return "OK"
 
 
+@app.route("/users")
+def users_getter():
+    '''
+        quickdoc
+    '''
+
+    return [x for x in users]
+
+
 @app.route("/users/<usr>")
 def user_getter(usr):
     '''
