@@ -4,10 +4,7 @@
     quickdoc
 '''
 
-from flask import Flask
-from flask import request
-from flask import jsonify
-import json
+from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
@@ -51,15 +48,15 @@ def user_getter(usr):
     if usr in users:
         return users[usr]
     else:
-        return {"error": "User not found"}
+        return {"error": "User not found"}, 404
 
 
 @app.post('/add_user')
 def user_adder():
     if request.is_json:
         dic = request.get_json()
-        if "username" not in dic:
-            return "Not valud", 400
+        if "username" not in dic.keys():
+            return "Not valid", 400
         users[dic["username"]] = dic
         return {"message": "User added", "user": dic}
     else:
