@@ -1,1 +1,2 @@
--- Quick comment\n
+-- Quick comment
+SELECT * FROM first_table
