@@ -4,5 +4,5 @@ SELECT id INTO @california_id
     WHERE name = 'California';
 SELECT *
     FROM cities
-    WHERE id = @california_id
+    WHERE state_id = @california_id
     ORDER BY id ASC;
