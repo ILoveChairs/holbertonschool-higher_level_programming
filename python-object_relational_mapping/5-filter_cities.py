@@ -60,7 +60,7 @@ def runQueries(
                FROM cities
                LEFT JOIN states
                ON cities.state_id = states.id
-               WHERE BINARY states.name = %s
+               WHERE states.name = %s
                ORDER BY cities.name ASC'''
     makeAndPrintQuery(db, cursor, query)
 
