@@ -56,6 +56,7 @@ def runQueries(
     query = '''SELECT * FROM states
                WHERE BINARY name = '{}'
                ORDER BY id ASC'''.format(argv[4])
+    query = db.escape_string(query)
     makeAndPrintQuery(cursor, query)
 
     cursor.close()
