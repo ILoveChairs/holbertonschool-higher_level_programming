@@ -41,10 +41,9 @@ def makeAndPrintQuery(
     rows = cursor.fetchall()
     for i, row in enumerate(rows):
         print(row[0], end="")
-        if i == len(rows) - 1:
-            print("\n", end="")
-        else:
+        if i != len(rows) - 1:
             print(", ", end="")
+    print("\n", end="")
 
 
 def runQueries(
@@ -60,8 +59,8 @@ def runQueries(
                FROM cities
                LEFT JOIN states
                ON cities.state_id = states.id
-               WHERE states.name LIKE %s
-               ORDER BY cities.name ASC'''
+               WHERE BINARY states.name = %s
+               ORDER BY cities.id ASC'''
     makeAndPrintQuery(db, cursor, query)
 
     cursor.close()
