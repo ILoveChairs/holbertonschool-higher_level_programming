@@ -11,9 +11,7 @@ import MySQLdb
 from MySQLdb import cursors
 
 
-def makeConnection(
-    argv: list[str]
-) -> MySQLdb.Connection:
+def makeConnection() -> MySQLdb.Connection:
     '''
         Make a connection with the database and returns it.
     '''
@@ -30,6 +28,7 @@ def makeConnection(
 
 
 def makeAndPrintQuery(
+    db: MySQLdb.Connection,
     cursor: cursors.Cursor,
     query: str
 ) -> None:
@@ -37,15 +36,19 @@ def makeAndPrintQuery(
         Makes query and prints result as a tuple.
     '''
 
-    cursor.execute(query)
+    user_input = db.escape_string(argv[4])
+    cursor.execute(query, args=[user_input])
     rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+    for i, row in enumerate(rows):
+        print(row[0], end="")
+        if i == len(rows) - 1:
+            print("\n", end="")
+        else:
+            print(", ", end="")
 
 
 def runQueries(
-    db: MySQLdb.Connection,
-    argv: str
+    db: MySQLdb.Connection
 ) -> None:
     '''
         Part that defines all queries to run.
@@ -53,11 +56,12 @@ def runQueries(
 
     cursor = db.cursor()
 
-    query = '''SELECT A.id, A.name, B.name
-               FROM cities A
-               LEFT JOIN states B
-               ON A.state_id = B.id
-               ORDER BY A.id ASC'''
+    query = '''SELECT cities.name
+               FROM cities
+               LEFT JOIN states
+               ON cities.state_id = states.id
+               WHERE BINARY states.name = %s
+               ORDER BY cities.name ASC'''
     makeAndPrintQuery(db, cursor, query)
 
     cursor.close()
@@ -68,9 +72,9 @@ def main() -> None:
         Calls all functions
     '''
 
-    db = makeConnection(argv)
+    db = makeConnection()
 
-    runQueries(db, argv)
+    runQueries(db)
 
     db.close()
 
