@@ -11,9 +11,7 @@ import MySQLdb
 from MySQLdb import cursors
 
 
-def makeConnection(
-    argv: list[str]
-) -> MySQLdb.Connection:
+def makeConnection() -> MySQLdb.Connection:
     '''
         Make a connection with the database and returns it.
     '''
@@ -38,8 +36,8 @@ def makeAndPrintQuery(
         Makes query and prints result as a tuple.
     '''
 
-    query = db.escape_string(query)
-    cursor.execute(query)
+    user_input = db.escape_string(argv[4])
+    cursor.execute(query, args=[user_input])
     rows = cursor.fetchall()
     for row in rows:
         print(row)
@@ -47,7 +45,6 @@ def makeAndPrintQuery(
 
 def runQueries(
     db: MySQLdb.Connection,
-    argv: str
 ) -> None:
     '''
         Part that defines all queries to run.
@@ -56,8 +53,8 @@ def runQueries(
     cursor = db.cursor()
 
     query = '''SELECT * FROM states
-               WHERE BINARY name = '{}'
-               ORDER BY id ASC'''.format(argv[4])
+               WHERE BINARY name = %s
+               ORDER BY id ASC'''
     makeAndPrintQuery(db, cursor, query)
 
     cursor.close()
@@ -68,9 +65,9 @@ def main() -> None:
         Calls all functions
     '''
 
-    db = makeConnection(argv)
+    db = makeConnection()
 
-    runQueries(db, argv)
+    runQueries(db)
 
     db.close()
 
