@@ -38,7 +38,6 @@ def makeAndPrintQuery(
         Makes query and prints result as a tuple.
     '''
 
-    query = db.escape_string(query)
     cursor.execute(query)
     rows = cursor.fetchall()
     for row in rows:
@@ -55,8 +54,11 @@ def runQueries(
 
     cursor = db.cursor()
 
-    query = '''SELECT * FROM cities
-               ORDER BY id ASC'''
+    query = '''SELECT A.id, A.name, B.name
+               FROM cities A
+               LEFT JOIN states B
+               ON A.state_id = B.id
+               ORDER BY A.id ASC'''
     makeAndPrintQuery(db, cursor, query)
 
     cursor.close()
