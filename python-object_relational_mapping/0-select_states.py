@@ -66,7 +66,7 @@ def main(argv: list[str]) -> None:
     db, cursor = makeConnection(argv)
 
     query = "SELECT * FROM states ORDER BY states.id ASC;"
-    makeAndPrintQuery(db, cursor, query)
+    makeAndPrintQuery(cursor, query)
 
     db.close()
     cursor.close()
