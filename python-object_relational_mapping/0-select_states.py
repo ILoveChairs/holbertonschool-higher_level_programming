@@ -68,8 +68,8 @@ def main(argv: list[str]) -> None:
     query = "SELECT * FROM states ORDER BY states.id ASC;"
     makeAndPrintQuery(cursor, query)
 
-    db.close()
     cursor.close()
+    db.close()
 
 
 if __name__ == "__main__":
