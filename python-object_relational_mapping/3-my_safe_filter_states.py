@@ -30,6 +30,7 @@ def makeConnection(
 
 
 def makeAndPrintQuery(
+    db: MySQLdb.Connection,
     cursor: cursors.Cursor,
     query: str
 ) -> None:
@@ -37,6 +38,7 @@ def makeAndPrintQuery(
         Makes query and prints result as a tuple.
     '''
 
+    query = db.escape_string(query)
     cursor.execute(query)
     rows = cursor.fetchall()
     for row in rows:
@@ -56,7 +58,7 @@ def runQueries(
     query = '''SELECT * FROM states
                WHERE BINARY name = '{}'
                ORDER BY id ASC'''.format(argv[4])
-    makeAndPrintQuery(cursor, query)
+    makeAndPrintQuery(db, cursor, query)
 
     cursor.close()
 
