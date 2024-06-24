@@ -23,6 +23,7 @@ def makeConnection(argv: list[str]
 
     db: MySQLdb.Connection
     db = MySQLdb.connect(host="localhost",
+                         port=3306,
                          user=argv[1],
                          passwd=argv[2],
                          db=argv[3])
@@ -61,9 +62,6 @@ def main(argv: list[str]) -> None:
     '''
         Calls all functions
     '''
-
-    if len(argv) != 4:
-        raise TypeError("Needs exactly 3 arguments")
 
     db, cursor = makeConnection(argv)
 
