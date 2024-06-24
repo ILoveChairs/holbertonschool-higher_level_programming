@@ -4,73 +4,71 @@
     Testing Databases with MySQLdb (python)
 '''
 
-import sys
+from sys import argv
 from typing import Any
-import sqlalchemy
+# import sqlalchemy
 import MySQLdb
 from MySQLdb import cursors
 
 
-def makeConnection(argv: list[str]
-                   ) -> tuple[MySQLdb.Connection,
-                              cursors.Cursor]:
+def makeConnection(
+    argv: list[str]
+) -> MySQLdb.Connection:
     '''
-        Make a connection with the database and return
-        the connection and a cursor.
-
-        Both must be closed later.
+        Make a connection with the database and returns it.
     '''
 
-    db: MySQLdb.Connection
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=argv[1],
-                         passwd=argv[2],
-                         db=argv[3])
-    cursor: cursors.Cursor
-    cursor = db.cursor(cursorclass=cursors.Cursor)
-    return db, cursor
+    db: MySQLdb.Connection = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=argv[1],
+        passwd=argv[2],
+        db=argv[3]
+    )
+
+    return db
 
 
-def makeQuery(cursor: cursors.Cursor,
-              query: str
-              ) -> int:
+def makeAndPrintQuery(
+    cursor: cursors.Cursor,
+    query: str
+) -> None:
     '''
-        Makes a query to the database by the cursor arg.
-
-        Execute apparently does it's things inside it's class.
-        Also returns number of rows affected?
+        Makes query and prints result as a tuple.
     '''
 
-    return cursor.execute(query)
-
-
-def makeAndPrintQuery(cursor: cursors.Cursor,
-                      query: str
-                      ) -> None:
-    '''
-        Calls makeQuery and prints result as a tuple.
-    '''
-
-    nOfRows: int = makeQuery(cursor, query)
+    cursor.execute(query)
     rows = cursor.fetchall()
     for row in rows:
         print(row)
 
 
-def main(argv: list[str]) -> None:
+def runQueries(
+    db: MySQLdb.Connection
+) -> None:
+    '''
+        Part that defines all queries to run.
+    '''
+
+    cursor = db.cursor()
+
+    query = "SELECT * FROM states"
+    makeAndPrintQuery(cursor, query)
+
+    cursor.close()
+
+
+def main() -> None:
     '''
         Calls all functions
     '''
 
-    db, cursor = makeConnection(argv)
+    db = makeConnection(argv)
 
-    query = "SELECT * FROM states ORDER BY states.id ASC;"
-    makeAndPrintQuery(cursor, query)
+    runQueries(db)
 
-    cursor.close()
     db.close()
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
