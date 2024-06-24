@@ -8,11 +8,12 @@ import sys
 from typing import Any
 import sqlalchemy
 import MySQLdb
+from MySQLdb import cursors
 
 
 def makeConnection(argv: list[str]
                    ) -> tuple[MySQLdb.Connection,
-                              MySQLdb.cursors.Cursor]:
+                              cursors.Cursor]:
     '''
         Make a connection with the database and return
         the connection and a cursor.
@@ -25,12 +26,12 @@ def makeConnection(argv: list[str]
                          user=argv[1],
                          passwd=argv[2],
                          db=argv[3])
-    cursor: MySQLdb.cursors.Cursor
-    cursor = db.cursor(cursorclass=MySQLdb.cursors.Cursor)
+    cursor: cursors.Cursor
+    cursor = db.cursor(cursorclass=cursors.Cursor)
     return db, cursor
 
 
-def makeQuery(cursor: MySQLdb.cursors.Cursor,
+def makeQuery(cursor: cursors.Cursor,
               query: str
               ) -> int:
     '''
@@ -43,7 +44,7 @@ def makeQuery(cursor: MySQLdb.cursors.Cursor,
     return cursor.execute(query)
 
 
-def makeAndPrintQuery(cursor: MySQLdb.cursors.Cursor,
+def makeAndPrintQuery(cursor: cursors.Cursor,
                       query: str
                       ) -> None:
     '''
@@ -51,15 +52,18 @@ def makeAndPrintQuery(cursor: MySQLdb.cursors.Cursor,
     '''
 
     nOfRows: int = makeQuery(cursor, query)
-    rows: tuple[tuple[Any]] = cursor.fetchall()
+    rows = cursor.fetchall()
     for row in rows:
         print(row)
 
 
-def main(argv) -> None:
+def main(argv: list[str]) -> None:
     '''
         Calls all functions
     '''
+
+    if len(argv) != 4:
+        raise TypeError("Needs exactly 3 arguments")
 
     db, cursor = makeConnection(argv)
 
