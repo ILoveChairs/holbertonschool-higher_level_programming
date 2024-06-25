@@ -62,15 +62,12 @@ def user_getter(usr):
 
 @app.post('/add_user')
 def user_adder():
-    if request.is_json:
-        dic = request.get_json()
-        if "username" not in dic or not isinstance(dic["username"], str) \
-            or not dic["username"].isalpha():
-            return "Not valid", 400
-        users[dic["username"]] = dic
-        return {"message": "User added", "user": dic}
-    else:
+    dic = request.get_json()
+    if "username" not in dic or not isinstance(dic["username"], str) \
+        or not dic["username"].isalpha():
         return "Not valid", 400
+    users[dic["username"]] = dic
+    return {"message": "User added", "user": dic}
 
 
 if __name__ == "__main__":
