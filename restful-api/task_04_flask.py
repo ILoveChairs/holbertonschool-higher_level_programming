@@ -65,7 +65,7 @@ def user_adder():
     dic = request.get_json(force=True)
     if "username" not in dic or dic["username"] is None or \
             not isinstance(dic["username"], str) \
-            or not dic["username"].isspace():
+            or dic["username"].isspace():
         return {"error": "Bad request"}, 400
     if dic["username"] in users:
         return {"error": "Conflict"}, 409
