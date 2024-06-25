@@ -68,7 +68,7 @@ def user_adder():
             or dic["username"].isspace():
         return {"error": "Username is required"}, 400
     if dic["username"] in users:
-        return {"error": "Username is duplicated"}, 409
+        return {"error": "Username is duplicated"}, 200
     users[dic["username"]] = dic
     return {"message": "User added", "user": dic}, 201
 
