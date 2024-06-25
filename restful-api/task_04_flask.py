@@ -67,8 +67,7 @@ def user_adder():
             not isinstance(dic["username"], str) \
             or dic["username"].isspace():
         return {"error": "Username is required"}, 400
-    if dic["username"] in users:
-        return {"error": "Username is duplicated"}, 200
+
     users[dic["username"]] = dic
     return {"message": "User added", "user": dic}, 201
 
