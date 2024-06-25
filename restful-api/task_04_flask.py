@@ -69,7 +69,7 @@ def user_adder():
     if dic["username"] in users:
         return {"error": "Conflict"}, 409
     users[dic["username"]] = dic
-    return {"message": "User added", "user": dic}
+    return {"message": "user added", "user": dic}
 
 
 if __name__ == "__main__":
