@@ -19,4 +19,5 @@ if __name__ == "__main__":
     session.add(newState)
     state = session.query(State).filter(State.name == name).first()
     print(state.id)
+    session.commit()
     session.close()
