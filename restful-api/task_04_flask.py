@@ -62,14 +62,12 @@ def user_getter(usr):
 
 @app.post('/add_user')
 def user_adder():
-    dic = request.get_json(force=True, silent=True)
-    if dic is None:
-        return {"error": "Not valid"}, 402
+    dic = request.get_json(force=True)
     if "username" not in dic or not isinstance(dic["username"], str) \
         or not dic["username"].isalpha():
-        return {"error": "Not valid"}, 400
+        return {"error": "Empty username"}, 400
     if dic["username"] in users:
-        return {"error": "User duplicated"}, 409
+        return {"error": "Username duplicated"}, 409
     users[dic["username"]] = dic
     return {"message": "User added", "user": dic}
 
