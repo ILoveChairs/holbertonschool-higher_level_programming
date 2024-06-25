@@ -63,7 +63,7 @@ def user_getter(usr):
 @app.post('/add_user')
 def user_adder():
     dic = request.get_json(force=True)
-    if "username" not in dic or dic["username"] or \
+    if "username" not in dic or dic["username"] is None or \
             not isinstance(dic["username"], str) \
             or not dic["username"].isspace():
         return {"error": "Bad request"}, 400
