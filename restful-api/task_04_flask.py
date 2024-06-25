@@ -65,9 +65,9 @@ def user_adder():
     dic = request.get_json(force=True)
     if "username" not in dic or not isinstance(dic["username"], str) \
         or not dic["username"].isalpha():
-        return {"error": "Empty username"}, 400
+        return {"error": "Bad request"}, 400
     if dic["username"] in users:
-        return {"error": "Username duplicated"}, 409
+        return {"error": "Conflict"}, 409
     users[dic["username"]] = dic
     return {"message": "User added", "user": dic}
 
