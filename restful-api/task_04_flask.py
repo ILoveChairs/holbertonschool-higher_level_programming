@@ -69,7 +69,7 @@ def user_adder():
         or not dic["username"].isalpha():
         return "Not valid", 400
     users[dic["username"]] = dic
-    return {"message": "User added", "user": dic}
+    return dic
 
 
 if __name__ == "__main__":
