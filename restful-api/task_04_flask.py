@@ -64,14 +64,14 @@ def user_getter(usr):
 def user_adder():
     dic = request.get_json(force=True, silent=True)
     if dic is None:
-        return {"error": "Not valid"}, 400
+        return {"error": "Not valid"}, 402
     if "username" not in dic or not isinstance(dic["username"], str) \
         or not dic["username"].isalpha():
         return {"error": "Not valid"}, 400
     if dic["username"] in users:
-        return {"error": "Not valid"}, 409
+        return {"error": "User duplicated"}, 409
     users[dic["username"]] = dic
-    return {"message": "User added", dic["username"]: dic}
+    return {"message": "User added", "user": dic}
 
 
 if __name__ == "__main__":
