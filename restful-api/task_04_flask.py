@@ -64,9 +64,6 @@ def user_getter(usr):
 def user_adder():
     if request.is_json:
         dic = request.get_json()
-        if "username" not in dic or not isinstance(dic["username"], str) \
-            or dic["username"] == "":
-            return "Not valid", 400
         users[dic["username"]] = dic
         return {"message": "User added", "user": dic}
     else:
