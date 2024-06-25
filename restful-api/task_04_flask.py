@@ -66,7 +66,7 @@ def user_adder():
     if "username" not in dic or dic["username"] is None or \
             not isinstance(dic["username"], str) \
             or dic["username"].isspace():
-        return {"error": "Bad request"}, 400
+        return {"error": "Username is required"}, 400
     if dic["username"] in users:
         return {"error": "Conflict"}, 409
     users[dic["username"]] = dic
