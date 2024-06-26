@@ -7,17 +7,34 @@
 from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity, get_jwt
+from flask_jwt_extended import get_jwt
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 app.config["JWT_SECRET_KEY"] = "SweetHomeAlabama1234"
 jwt = JWTManager(app)
 
-users = {}
+users = {
+      "user1": {
+          "username": "user1",
+          "password":  # "Colombia"
+          "scrypt:32768:8:1$H8LLOa8s8dRzTfa7$5a4ace93a9fa5a9c609b3ba4f43c10d05\
+cdbc4116ba3c21efeca0cabafaca7a54f31e0bfde1616e1eb35be02db5b1b67fd2465c75855a6c\
+ae22172c717779d8b",
+          "role": "user"
+          },
+      "admin1": {
+          "username": "admin1",
+          "password":  # "Venezuela"
+          "scrypt:32768:8:1$End4HJiKMTJMe5kc$be02de334c13dacf9d3c7f4ef59bfca06\
+cc87bb9f8f9dd4856b44b45135bdcef859e7c15fb6bfd15e98aa0a4e10b8fa87183cdbe244b3af\
+ffad9fc210094f967",
+          "role": "admin"
+          }
+  }
 tokens = {}
 
 
@@ -29,7 +46,7 @@ def handle_basic(err):
 @auth.verify_password
 def verify_password(username, password):
     if username in users and \
-            check_password_hash(users.get(username), password):
+            check_password_hash(users[username]["password"], password):
         return username
 
 
