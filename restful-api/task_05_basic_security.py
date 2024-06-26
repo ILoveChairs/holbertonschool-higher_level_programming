@@ -53,7 +53,7 @@ def verify_password(username, password):
 @app.route('/basic-protected')
 @auth.login_required
 def index():
-    return "Basic Auth: Access Granted", 200
+    return {"message": "Basic Auth: Access Granted"}, 200
 
 
 @jwt.unauthorized_loader
