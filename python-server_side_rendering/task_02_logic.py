@@ -40,7 +40,8 @@ def contact():
 @app.route('/items')
 def items():
     with open("items.json", 'r') as f:
-        items = json.load(f)
+        data = json.load(f)
+    items = data.get("items")
     items_render = items_template.render(items=items)
     return items_render, 200
 
