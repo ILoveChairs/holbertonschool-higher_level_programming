@@ -5,6 +5,7 @@
 '''
 
 import os.path
+import re
 
 
 def generate_invitations(template: str, attendees: list[dict]) -> None:
@@ -36,16 +37,17 @@ def generate_invitations(template: str, attendees: list[dict]) -> None:
     # Process attendees
     for attendee in attendees:
         output = template
-        for key in attendee:
-            # Didn't want to use .format()
-            placeholder = '{' + key + '}'
-            if placeholder not in template:
-                continue
+        while (placeholder_start := output.find('{')) != -1:
+            placeholder_end = output.find('}')
+            placeholder_name = output[placeholder_start + 1: placeholder_end]
+            placeholder = '{' + placeholder_name + '}'
             # Replaces with "N/A" if none
-            if attendee[key] is None:
+            if (placeholder_name not in attendee or
+                    attendee[placeholder_name] is None):
                 output = output.replace(placeholder, "N/A")
             else:
-                output = output.replace(placeholder, attendee[key])
+                output = output.\
+                    replace(placeholder, attendee[placeholder_name])
 
         # Rename to shorten code
         def generatePath(num):
