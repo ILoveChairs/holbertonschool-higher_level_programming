@@ -5,7 +5,6 @@
 '''
 
 import os.path
-import re
 
 
 def generate_invitations(template: str, attendees: list[dict]) -> None:
@@ -37,6 +36,7 @@ def generate_invitations(template: str, attendees: list[dict]) -> None:
     # Process attendees
     for attendee in attendees:
         output = template
+        # While '{' exists replace everything until '}' included with something
         while (placeholder_start := output.find('{')) != -1:
             placeholder_end = output.find('}')
             placeholder_name = output[placeholder_start + 1: placeholder_end]
