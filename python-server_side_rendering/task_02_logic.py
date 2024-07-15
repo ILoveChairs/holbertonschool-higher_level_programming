@@ -15,30 +15,34 @@ app = Flask(__name__)
 env = Environment(loader=FileSystemLoader('templates'))
 
 # Gets and renders all templates
-home_template = env.get_template('index.html').render()
-about_template = env.get_template('about.html').render()
-contact_template = env.get_template('contact.html').render()
-items_template = env.get_template('items.html').render()
+home_render = env.get_template('index.html').render()
+about_render = env.get_template('about.html').render()
+contact_render = env.get_template('contact.html').render()
+
+items_template = env.get_template('items.html')
 
 
 @app.route('/')
 def home():
-    return home_template, 200
+    return home_render, 200
 
 
 @app.route('/about')
 def about():
-    return about_template, 200
+    return about_render, 200
 
 
 @app.route('/contact')
 def contact():
-    return contact_template, 200
+    return contact_render, 200
 
 
 @app.route('/items')
 def items():
-    return items_template, 200
+    with open("items.json", 'r') as f:
+        items = json.load(f)
+    items_render = items_template.render(items=items)
+    return items_render, 200
 
 
 if __name__ == '__main__':
