@@ -43,7 +43,7 @@ def generate_invitations(template: str, attendees: list[dict]) -> None:
                 continue
             # Replaces with "N/A" if none
             if attendee[key] is None:
-                output = output.replace(placeholder, "'N/A'")
+                output = output.replace(placeholder, "N/A")
             else:
                 output = output.replace(placeholder, attendee[key])
 
