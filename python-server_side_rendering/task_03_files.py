@@ -52,6 +52,7 @@ def items():
 def products():
     # if data is string, is an error message
     data: list[dict] | str | None = None
+    error = False
     try:
         # Check whether source is json or csv, error message if not.
         if request.args.get("source") == "json":
@@ -78,7 +79,8 @@ def products():
             raise Exception("No items found")
     except Exception as e:
         data = str(e)
-    products_display_render = product_display_template.render(items=data)
+        error = True
+    products_display_render = product_display_template.render(items=data, error=error)
     return products_display_render, 200
 
 
