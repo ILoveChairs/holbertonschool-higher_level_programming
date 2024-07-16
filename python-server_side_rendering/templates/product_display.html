@@ -4,14 +4,14 @@
     <title>Items List</title>
 </head>
 <body>
-{% if not errror %}
+{% if not error %}
     <table>
         <tr>
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
         </tr>
-    {% for item in items %}
+    {% for item in data %}
         <tr>
             <td>{{ item['name'] }}</td>
             <td>{{ item['category'] }}</td>

@@ -80,7 +80,7 @@ def products():
     except Exception as e:
         data = str(e)
         error = True
-    products_display_render = product_display_template.render(items=data, error=error)
+    products_display_render = product_display_template.render(data=data, error=error)
     return products_display_render, 200
 
 
