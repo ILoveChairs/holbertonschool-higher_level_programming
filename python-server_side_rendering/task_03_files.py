@@ -50,17 +50,34 @@ def items():
 
 @app.route('/products')
 def products():
-    if request.args.get("source") == "json":
-        with open("products.json", 'r') as f:
-            data = json.load(f)
-    elif request.args.get("source") == "csv":
-        data = []
-        with open("products.csv", 'r') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                data.append(row)
-    else:
-        raise ValueError("gil")
+    # if data is string, is an error message
+    data: list[dict] | str | None = None
+    try:
+        # Check whether source is json or csv, error message if not.
+        if request.args.get("source") == "json":
+            with open("products.json", 'r') as f:
+                data = json.load(f)
+        elif request.args.get("source") == "csv":
+            data = []
+            with open("products.csv", 'r') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    data.append(row)
+        else:
+            raise Exception("Wrong source")
+        # Check id
+        if query_id := request.args.get("id"):
+            for item in data:
+                if item.get("id") == query_id:
+                    data = item
+                    break
+            else:
+                raise Exception("Product not found")
+        # Check if data is empty
+        if not data:
+            raise Exception("No items found")
+    except Exception as e:
+        data = str(e)
     products_display_render = product_display_template.render(items=data)
     return products_display_render, 200
 

@@ -4,7 +4,7 @@
     <title>Items List</title>
 </head>
 <body>
-{% if items %}
+{% if isinstance(data, list) %}
     <table>
         <tr>
             <th>Name</th>
@@ -20,7 +20,7 @@
     {% endfor %}
     </table>
 {% else %}
-    <p>No items found</p>
+    <p>{{ data }}</p>
 {% endif %}
 </body>
 </html>
