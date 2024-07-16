@@ -69,8 +69,8 @@ def products():
         # Check id
         if query_id := request.args.get("id"):
             for item in data:
-                if item.get("id") == query_id:
-                    data = item
+                if str(item.get("id")) == query_id:
+                    data = [item]
                     break
             else:
                 raise Exception("Product not found")
