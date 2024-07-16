@@ -7,6 +7,7 @@
 from flask import Flask, request
 from jinja2 import Environment, FileSystemLoader
 import json
+import csv
 
 # Instanciates the flask app
 app = Flask(__name__)
@@ -20,6 +21,7 @@ about_render = env.get_template('about.html').render()
 contact_render = env.get_template('contact.html').render()
 
 items_template = env.get_template('items.html')
+product_display_template = env.get_template('product_display.html')
 
 
 @app.route('/')
@@ -44,6 +46,23 @@ def items():
     items = data.get("items")
     items_render = items_template.render(items=items)
     return items_render, 200
+
+
+@app.route('/products')
+def products():
+    if request.args.get("source") == "json":
+        with open("products.json", 'r') as f:
+            data = json.load(f)
+    elif request.args.get("source") == "csv":
+        data = []
+        with open("products.csv", 'r') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                data.append(row)
+    else:
+        raise ValueError("gil")
+    products_display_render = product_display_template.render(items=data)
+    return products_display_render, 200
 
 
 if __name__ == '__main__':
