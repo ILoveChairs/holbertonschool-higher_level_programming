@@ -12,4 +12,4 @@ class LockedClass():
         if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
-        self.first_name = value
+        self.__dict__['first_name'] = value
