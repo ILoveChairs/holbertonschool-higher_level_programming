@@ -34,4 +34,9 @@ class LockedClass(metaclass=MetaClass):
         if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
-        return self.__dict__['first_name']
+        try:
+            return self.__dict__['first_name']
+        except Exception:
+            pass
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '{key}'")
