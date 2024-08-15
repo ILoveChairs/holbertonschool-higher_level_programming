@@ -31,15 +31,7 @@ class LockedClass(metaclass=MetaClass):
         self.__dict__['first_name'] = value
 
     def __getattr__(self, key: str) -> Any:
-        if key != 'first_name':
+        if not (key == 'first_name' or '__dict__'):
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
         return self.__dict__['first_name']
-
-    @property
-    def __dict__(self):
-        try:
-            return {'first_name': self.__dict__['first_name']}
-        except Exception:
-            raise AttributeError(
-            f"'{self.__class__.__name__}' object has no attribute '__dict__'")
