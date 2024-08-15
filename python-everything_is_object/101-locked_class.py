@@ -5,9 +5,6 @@
 '''
 
 
-from typing import Any
-
-
 class MetaClass(type):
     ''' quickdoc '''
 
@@ -30,7 +27,7 @@ class LockedClass(metaclass=MetaClass):
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
         self.__dict__['first_name'] = value
 
-    def __getattr__(self, key: str) -> Any:
+    def __getattr__(self, key: str):
         if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
