@@ -12,6 +12,11 @@ class MetaClass(type):
         raise AttributeError(
             f"'LockedClass' object has no attribute '{key}'")
 
+    @property
+    def __dict__(self):
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '__dict__'")
+
 
 class LockedClass(metaclass=MetaClass):
     ''' quickdoc '''
@@ -21,3 +26,8 @@ class LockedClass(metaclass=MetaClass):
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
         self.__dict__['first_name'] = value
+
+    @property
+    def __dict__(self):
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '__dict__'")
