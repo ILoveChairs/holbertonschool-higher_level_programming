@@ -31,7 +31,7 @@ class LockedClass(metaclass=MetaClass):
         self.__dict__['first_name'] = value
 
     def __getattr__(self, key: str) -> Any:
-        if not (key == 'first_name' or '__dict__'):
+        if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
         return self.__dict__['first_name']
