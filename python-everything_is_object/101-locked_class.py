@@ -5,15 +5,15 @@
 '''
 
 
-class MetaClass:
+class MetaClass(type):
     ''' quickdoc '''
 
     def __setattr__(self, key, value):
         raise AttributeError(
-            f"'{self.__class__.__name__}' object has no attribute '{key}'")
+            f"'LockedClass' object has no attribute '{key}'")
 
 
-class LockedClass(MetaClass):
+class LockedClass(MetaClass, metaclass=MetaClass):
     ''' quickdoc '''
 
     def __setattr__(self, key, value):
