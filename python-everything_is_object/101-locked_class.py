@@ -24,24 +24,22 @@ class MetaClass(type):
 class LockedClass(metaclass=MetaClass):
     ''' quickdoc '''
 
-    def __init__(self):
-        self.____dict__ = {}
-
     def __setattr__(self, key, value):
         if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
-        self.____dict__['first_name'] = value
+        self.__dict__['first_name'] = value
 
-    def __getattribute__(self, key: str) -> Any:
+    def __getattr__(self, key: str) -> Any:
         if key != 'first_name':
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{key}'")
-        return self.____dict__['first_name']
+        return self.__dict__['first_name']
 
     @property
     def __dict__(self):
         try:
-            return self.____dict__
+            return {'first_name': self.__dict__['first_name']}
         except Exception:
-            return ''
+            raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '__dict__'")
