@@ -9,8 +9,9 @@ class MetaClass(type):
     ''' quickdoc '''
 
     def __setattr__(self, key, value):
-        raise AttributeError(
-            f"'LockedClass' object has no attribute '{key}'")
+        if key != 'first_name':
+            raise AttributeError(
+                f"'LockedClass' object has no attribute '{key}'")
 
 
 class LockedClass(MetaClass, metaclass=MetaClass):
