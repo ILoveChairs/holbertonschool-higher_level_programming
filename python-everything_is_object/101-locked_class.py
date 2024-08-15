@@ -24,6 +24,9 @@ class MetaClass(type):
 class LockedClass(metaclass=MetaClass):
     ''' quickdoc '''
 
+    def __init__(self):
+        self.____dict__ = {}
+
     def __setattr__(self, key, value):
         if key != 'first_name':
             raise AttributeError(
